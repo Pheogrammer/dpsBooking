@@ -19,7 +19,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm" >
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -34,7 +34,7 @@
                     @else
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="">{{ __('Rooms') }}</a>
+                            <a class="nav-link" href="{{route('rooms')}}">{{ __('Rooms') }}</a>
                         </li>
                     </ul>
                     @endguest
@@ -83,5 +83,6 @@
         </main>
     </div>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>
