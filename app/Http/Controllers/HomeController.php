@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller
 {
@@ -103,6 +105,30 @@ class HomeController extends Controller
 
         $room->save();
         return redirect()->route('viewRoom', $request->id)->with(['message' => 'Room was Updated Successfully!']);
+    }
+
+    public function roomsDelete($id)
+    {
+        try {
+            $room = Room::findOrFail($id);
+
+            // Delete images from public directory
+            if ($room->image1) {
+                File::delete(public_path('' . $room->image1));
+            }
+            if ($room->image2) {
+                File::delete(public_path('' . $room->image2));
+            }
+            if ($room->image3) {
+                File::delete(public_path('' . $room->image3));
+            }
+
+            $room->delete();
+            return redirect()->route('rooms')->with(['message' => 'Room was Deleted Successfully!']);
+        } catch (ModelNotFoundException $e) {
+            return redirect()->route('rooms')->with(['error' => 'Room not found']);
+        }
+
     }
 
     //
