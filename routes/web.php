@@ -27,6 +27,6 @@ Route::get('rooms', [HomeController::class, 'rooms'])->name('rooms');
 Route::get('roomsRegistration', [HomeController::class, 'roomsRegistration'])->name('roomsRegistration');
 Route::post('roomsRegistrationPost', [HomeController::class, 'roomsRegistrationPost'])->name('roomsRegistrationPost');
 Route::get('viewRoom/{id}', [HomeController::class, 'viewRoom'])->name('viewRoom');
-Route::get('roomsEdit/{id}', [HomeController::class, 'roomsEdit'])->name('roomsEdit');
+
 Route::post('roomsEditPost', [HomeController::class, 'roomsEditPost'])->name('roomsEditPost');
 Route::get('roomsDelete/{id}', [HomeController::class, 'roomsDelete'])->name('roomsDelete');

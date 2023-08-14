@@ -35,29 +35,29 @@
 
                             <div class="form-group">
                                 <label for="">Room Name</label>
-                                <input type="text" name="room_name" id="" class="form-control" placeholder=""
-                                    aria-describedby="helpId">
+                                <input type="text" required name="room_name" id="" class="form-control"
+                                    placeholder="" aria-describedby="helpId">
                             </div>
                             <br>
                             <div class="form-group">
                                 <label for="">Room Location</label>
-                                <input type="text" name="location" id="" class="form-control" placeholder=""
-                                    aria-describedby="helpId">
+                                <input type="text" required name="location" id="" class="form-control"
+                                    placeholder="" aria-describedby="helpId">
                             </div>
                             <br>
                             <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
                                 <div class="col  ">
                                     <div class="form-group">
                                         <label for="">Maximum Capacity</label>
-                                        <input type="number" name="max_capacity" id="" class="form-control"
-                                            placeholder="" aria-describedby="helpId">
+                                        <input required type="number" name="max_capacity" min="1" id=""
+                                            class="form-control" placeholder="" aria-describedby="helpId">
                                     </div>
                                 </div>
                                 <div class="col  ">
                                     <div class="form-group">
                                         <label for="">Minimum Capacity</label>
-                                        <input type="number" name="min_capacity" id="" class="form-control"
-                                            placeholder="" aria-describedby="helpId">
+                                        <input required type="number" name="min_capacity" id="" min="1"
+                                            class="form-control" placeholder="" aria-describedby="helpId">
                                     </div>
                                 </div>
                             </div>

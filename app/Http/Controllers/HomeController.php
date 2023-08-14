@@ -65,13 +65,44 @@ class HomeController extends Controller
         }
 
         $room->save();
-        return redirect()->route('rooms');
+        return redirect()->route('rooms')->with(['message' => 'Room was registered Successfully!']);
     }
 
     public function viewRoom($id)
     {
         $room = Room::find($id);
         return view('viewRoom', compact('room'));
+    }
+
+    public function roomsEditPost(Request $request)
+    {
+        $room = Room::where('id', $request->id)->first();
+        $room->room_name = $request->room_name;
+        $room->location = $request->location;
+        $room->max_capacity = $request->max_capacity;
+        $room->min_capacity = $request->min_capacity;
+
+        // Handle image uploads and renaming
+        if ($request->hasFile('image1')) {
+            $image1 = $request->file('image1');
+            $image1Path = $this->uploadAndRenameImage($image1, $room->room_name);
+            $room->image1 = $image1Path;
+        }
+
+        if ($request->hasFile('image2')) {
+            $image2 = $request->file('image2');
+            $image2Path = $this->uploadAndRenameImage($image2, $room->room_name);
+            $room->image2 = $image2Path;
+        }
+
+        if ($request->hasFile('image3')) {
+            $image3 = $request->file('image3');
+            $image3Path = $this->uploadAndRenameImage($image3, $room->room_name);
+            $room->image3 = $image3Path;
+        }
+
+        $room->save();
+        return redirect()->route('viewRoom', $request->id)->with(['message' => 'Room was Updated Successfully!']);
     }
 
     //
