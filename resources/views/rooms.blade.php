@@ -60,7 +60,7 @@
                                         <td>{{ $item->location }}</td>
                                         <td>Max: {{ $item->max_capacity }} - Min: {{ $item->min_capacity }}</td>
                                         <td>
-
+                                            <a href="{{route('viewRoom',$item->id)}}" class="btn btn-primary">View</a>
                                         </td>
                                     </tr>
                                     @php

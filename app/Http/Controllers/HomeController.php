@@ -68,16 +68,26 @@ class HomeController extends Controller
         return redirect()->route('rooms');
     }
 
+    public function viewRoom($id)
+    {
+        $room = Room::find($id);
+        return view('viewRoom', compact('room'));
+    }
+
+    //
+
     private function uploadAndRenameImage($imageFile, $roomName)
     {
         $extension = $imageFile->getClientOriginalExtension();
-        $uniqueFileName = $roomName . '_' . now()->format('YmdHis') . '.' . $extension;
+        $originalFileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+        $uniqueFileName = $originalFileName . '_' . $roomName . '_' . now()->format('YmdHis') . '.' . $extension;
         $imagePath = 'images/' . $uniqueFileName;
 
-        Storage::putFileAs('images', $imageFile, $uniqueFileName);
+        $imageFile->move(public_path('images'), $uniqueFileName);
 
         return $imagePath;
     }
+
 
 
 }
