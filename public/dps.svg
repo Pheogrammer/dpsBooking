@@ -23,38 +23,38 @@
        x="2.0585964"
        y="0.26442239" />
     <g
-       id="g46331"
-       transform="translate(2.5747439,-112.84009)">
+       id="g6155"
+       transform="translate(11.048418,2.5257315)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-weight:normal;font-size:11.8021px;line-height:1.25;font-family:sans-serif;fill:#e0ad29;fill-opacity:1;stroke:none;stroke-width:0.295052"
-         x="45.429241"
-         y="124.49032"
+         x="36.955566"
+         y="9.1244984"
          id="text3741"><tspan
            id="tspan3739"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:helvetica;-inkscape-font-specification:helvetica;fill:#e0ad29;fill-opacity:1;stroke-width:0.295052"
-           x="45.429241"
-           y="124.49032">University of Dar es Salaam</tspan></text>
+           x="36.955566"
+           y="9.1244984">University of Dar es Salaam</tspan></text>
       <text
          xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:8.58098px;line-height:1.25;font-family:sans-serif;fill:#0964ae;fill-opacity:1;stroke:none;stroke-width:0.214525"
-         x="40.925541"
-         y="135.24997"
+         style="font-style:normal;font-weight:normal;font-size:8.58098px;line-height:1.25;font-family:sans-serif;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.214525"
+         x="32.451866"
+         y="19.88415"
          id="text5145"><tspan
            id="tspan5143"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:helvetica;-inkscape-font-specification:'helvetica Bold';fill:#0964ae;stroke-width:0.214525;fill-opacity:1"
-           x="40.925541"
-           y="135.24997">DIRECTORATE OF PUBLIC SERVICES</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:helvetica;-inkscape-font-specification:'helvetica Bold';fill:#ffffff;stroke-width:0.214525"
+           x="32.451866"
+           y="19.88415">DIRECTORATE OF PUBLIC SERVICES</tspan></text>
       <text
          xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:8.58098px;line-height:1.25;font-family:sans-serif;fill:#ed4322;fill-opacity:1;stroke:none;stroke-width:0.214525"
-         x="62.013245"
-         y="143.63414"
+         style="font-style:normal;font-weight:normal;font-size:8.58098px;line-height:1.25;font-family:sans-serif;fill:#39574f;fill-opacity:1;stroke:none;stroke-width:0.214525"
+         x="53.53957"
+         y="28.26832"
          id="text2107"><tspan
            id="tspan2105"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:helvetica;-inkscape-font-specification:'helvetica Bold';fill:#ed4322;fill-opacity:1;stroke-width:0.214525"
-           x="62.013245"
-           y="143.63414">ROOMS BOOKING PORTAL</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:helvetica;-inkscape-font-specification:'helvetica Bold';fill:#39574f;fill-opacity:1;stroke-width:0.214525"
+           x="53.53957"
+           y="28.26832">ROOMS BOOKING PORTAL</tspan></text>
     </g>
   </g>
 </svg>
