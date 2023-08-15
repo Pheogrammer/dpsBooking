@@ -35,7 +35,8 @@
                                         <h3 class="heading"><a href="#">{{ $item->room_name }}</a></h3>
                                         <p>{{ \Illuminate\Support\Str::limit($item->location, 50, '...') }}</p>
                                         <div class="d-flex align-items-center mt-4">
-                                            <p class="mb-0"><a href="#" class="btn btn-primary">Read More
+                                            <p class="mb-0"><a href="{{ route('viewDetails', $item->id) }}"
+                                                    class="btn btn-primary">View Details
                                                     <span class="ion-ios-arrow-round-forward"></span></a></p>
                                         </div>
                                     </div>
@@ -57,7 +58,7 @@
                                 shuffle($imageUrls1); // Shuffle the array to mix images
                             @endphp
                             <div class="item">
-                                <div class="blog-entry" style="height: 470px;"> 
+                                <div class="blog-entry" style="height: 470px;">
                                     <a href="#" class="block-20 d-flex align-items-start"
                                         style="background-image: url('{{ $imageUrls1[0] }}');">
                                     </a>
@@ -65,7 +66,8 @@
                                         <h3 class="heading"><a href="#">{{ $item1->room_name }}</a></h3>
                                         <p>{{ \Illuminate\Support\Str::limit($item1->location, 50, '...') }}</p>
                                         <div class="d-flex align-items-center mt-4">
-                                            <p class="mb-0"><a href="#" class="btn btn-primary">Read More
+                                            <p class="mb-0"><a href="{{ route('viewDetails', $item1->id) }}"
+                                                    class="btn btn-primary">View Details
                                                     <span class="ion-ios-arrow-round-forward"></span></a></p>
                                         </div>
                                     </div>

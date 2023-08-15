@@ -16,6 +16,7 @@ use App\Http\Controllers\ViewerController;
 */
 
 Route::get('/',[ViewerController::class, 'index'])->name('index');
+Route::get('viewDetails/{id}',[ViewerController::class, 'viewDetails'])->name('viewDetails');
 
 Auth::routes();
 
