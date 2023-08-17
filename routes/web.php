@@ -17,7 +17,7 @@ use App\Http\Controllers\ViewerController;
 
 Route::get('/',[ViewerController::class, 'index'])->name('index');
 Route::get('viewDetails/{id}',[ViewerController::class, 'viewDetails'])->name('viewDetails');
-
+Route::get('bookVenue/{id}',[ViewerController::class, 'bookVenue'])->name('bookVenue');
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

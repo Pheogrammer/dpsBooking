@@ -25,7 +25,10 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{asset('dps.svg')}}" alt="" sizes="" srcset="">
+                    <img src="{{ asset('logo_ud.png') }}" alt="" height="150" srcset="">
+                </a>
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="{{ asset('dpsBooking.svg') }}" alt="" sizes="" srcset="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

@@ -19,4 +19,9 @@ class ViewerController extends Controller
         $room = Room::find($id);
         return view('viewDetails', compact('room'));
     }
+    public function bookVenue($id)
+    {
+        $room = Room::find($id);
+        return view('bookVenue', compact('room'));
+    }
 }
