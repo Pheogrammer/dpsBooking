@@ -8,219 +8,172 @@
                 before submitting.
             </p>
         </div>
-
-        <div class="row">
-            <div class="col-md-4 order-md-2 mb-4">
-                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Your cart</span>
-                    <span class="badge badge-secondary badge-pill">3</span>
-                </h4>
-                <ul class="list-group mb-3">
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Product name</h6>
-                            <small class="text-muted">Brief description</small>
-                        </div>
-                        <span class="text-muted">$12</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Second product</h6>
-                            <small class="text-muted">Brief description</small>
-                        </div>
-                        <span class="text-muted">$8</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Third item</h6>
-                            <small class="text-muted">Brief description</small>
-                        </div>
-                        <span class="text-muted">$5</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between bg-light">
-                        <div class="text-success">
-                            <h6 class="my-0">Promo code</h6>
-                            <small>EXAMPLECODE</small>
-                        </div>
-                        <span class="text-success">-$5</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Total (USD)</span>
-                        <strong>$20</strong>
-                    </li>
-                </ul>
-
-                <form class="card p-2">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Promo code">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-secondary">Redeem</button>
-                        </div>
-                    </div>
-                </form>
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
             </div>
-            <div class="col-md-8 order-md-1">
-                <h4 class="mb-3">Personal Information</h4>
-                <form class="needs-validation" novalidate enctype="multipart/form-data">
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        @if (Session::has('message'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{{ Session::get('message') }}</li>
+                </ul>
+            </div>
+        @endif
+        <div class="row">
+
+            <div class="col order-md-1">
+                <form class="needs-validation" action="{{ route('bookVenuePost') }}"  enctype="multipart/form-data"
+                    method="POST">
+                    @csrf
+                    <h4 class="mb-3">Personal Information</h4>
+                    <input type="text" name="id" value="{{ $room->id }}" hidden>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="firstName">First name</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="" value=""
-                                required>
-                            <div class="invalid-feedback">
-                                Valid first name is required.
-                            </div>
+                            <label for="name">Full Name<sup class='text-danger'>*</sup></label>
+                            <input type="text" placeholder="Your name"
+                                class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                                placeholder="" value="{{ old('name') }}" required>
+                            @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="lastName">Last name</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="" value=""
-                                required>
+                            <label for="email">Email<sup class='text-danger'>*</sup></label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                                name="email" placeholder="Your email" value="{{ old('email') }}" required>
                             <div class="invalid-feedback">
-                                Valid last name is required.
+                                Please enter a valid email address for receiving updates.
                             </div>
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="username">Username</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">@</span>
-                            </div>
-                            <input type="text" class="form-control" id="username" placeholder="Username" required>
-                            <div class="invalid-feedback" style="width: 100%;">
-                                Your username is required.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                        <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                        <div class="invalid-feedback">
-                            Please enter a valid email address for shipping updates.
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-                        <div class="invalid-feedback">
-                            Please enter your shipping address.
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
                     </div>
 
                     <div class="row">
-                        <div class="col-md-5 mb-3">
-                            <label for="country">Country</label>
-                            <select class="custom-select d-block w-100" id="country" required>
-                                <option value="">Choose...</option>
-                                <option>United States</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                Please select a valid country.
-                            </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="phone">Phone Number<sup class='text-danger'>*</sup></label>
+                            <input type="tel" placeholder="Your phone"
+                                class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone"
+                                placeholder="" value="{{ old('phone') }}" required>
+                            @error('phone')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="state">State</label>
-                            <select class="custom-select d-block w-100" id="state" required>
-                                <option value="">Choose...</option>
-                                <option>California</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                Please provide a valid state.
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="zip">Zip</label>
-                            <input type="text" class="form-control" id="zip" placeholder="" required>
-                            <div class="invalid-feedback">
-                                Zip code required.
-                            </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" id="address" name="address"
+                                placeholder="Your address" value="{{ old('address') }}">
                         </div>
                     </div>
-                    <hr class="mb-4">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="same-address">
-                        <label class="custom-control-label" for="same-address">Shipping address is the same as my billing
-                            address</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="save-info">
-                        <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                    </div>
-                    <hr class="mb-4">
 
-                    <h4 class="mb-3">Payment</h4>
+                    <br>
+                    <h4 class="mb-3">Booking Information</h4>
 
+                    <div class="mb-3">
+                        <label for="purpose">Purpose of Booking/Name of event<sup class='text-danger'>*</sup></label>
+                        <input type="text" class="form-control @error('purpose') is-invalid @enderror" id="purpose"
+                            name="purpose" placeholder="Write the purpose of booking or the name of event"
+                            value="{{ old('purpose') }}" required>
+                        <div class="invalid-feedback">
+                            Purpose is required.
+                        </div>
+                        @error('purpose')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="entity">Name of the entity booking<sup class='text-danger'>*</sup></label>
+                            <input type="text" placeholder="Entity/company name"
+                                class="form-control @error('entity') is-invalid @enderror" id="entity" name="entity"
+                                placeholder="" value="{{ old('entity') }}" required>
+                            @error('entity')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="participants">Approximately total participants<sup
+                                    class='text-danger'>*</sup></label>
+                            <input type="number" max="{{ $room->max_capacity }}" min="{{ $room->min_capacity }}"
+                                class="form-control @error('participants') is-invalid @enderror" name="participants"
+                                id="participants" placeholder="Total participants" value="{{ old('participants') }}"
+                                >
+                            <small class="form-text text-danger">
+                                Max: {{ $room->max_capacity }}, Min: {{ $room->min_capacity }}
+                            </small>
+                            @error('participants')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="start_date">Start date<sup class='text-danger'>*</sup></label>
+                            <input type="date" class="form-control @error('start_date') is-invalid @enderror"
+                                id="start_date" name="start_date" value="{{ old('start_date') }}"
+                                min="{{ date('Y-m-d') }}" required>
+                            @error('start_date')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="end_date">End date</label>
+                            <input type="date" class="form-control @error('end_date') is-invalid @enderror"
+                                id="end_date" name="end_date" value="{{ old('end_date') }}"
+                                min="{{ date('Y-m-d') }}">
+                            <small class="form-text text-muted">
+                                If the event is single day, the end date can be left out.
+                            </small>
+                            @error('end_date')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="attachment">Attachment <span class="text-muted">(Optional)</span></label>
+                        <input type="file" class="form-control @error('attachment') is-invalid @enderror"
+                            id="attachment" name="attachment" >
+                        @error('attachment')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <hr class="mb-4">
+                    <b>Would you like us to include conference services?</b>
                     <div class="d-block my-3">
                         <div class="custom-control custom-radio">
-                            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input"
-                                checked required>
-                            <label class="custom-control-label" for="credit">Credit card</label>
+                            <input id="credit" value="yes" name="paymentMethod" type="radio"
+                                class="custom-control-input" required>
+                            <label class="custom-control-label" for="credit">Yes</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input"
-                                required>
-                            <label class="custom-control-label" for="debit">Debit card</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input"
-                                required>
-                            <label class="custom-control-label" for="paypal">Paypal</label>
+                            <input id="debit" value="no" name="paymentMethod" type="radio"
+                                class="custom-control-input" checked required>
+                            <label class="custom-control-label" for="debit">No</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="cc-name">Name on card</label>
-                            <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                            <small class="text-muted">Full name as displayed on card</small>
-                            <div class="invalid-feedback">
-                                Name on card is required
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="cc-number">Credit card number</label>
-                            <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                            <div class="invalid-feedback">
-                                Credit card number is required
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <label for="cc-expiration">Expiration</label>
-                            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                            <div class="invalid-feedback">
-                                Expiration date required
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="cc-expiration">CVV</label>
-                            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                            <div class="invalid-feedback">
-                                Security code required
-                            </div>
-                        </div>
-                    </div>
+
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
                 </form>
+
             </div>
         </div>
 
-        <footer class="my-5 pt-5 text-muted text-center text-small">
-            <p class="mb-1">&copy; 2017-2018 Company Name</p>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Privacy</a></li>
-                <li class="list-inline-item"><a href="#">Terms</a></li>
-                <li class="list-inline-item"><a href="#">Support</a></li>
-            </ul>
-        </footer>
+
     </div>
 @endsection

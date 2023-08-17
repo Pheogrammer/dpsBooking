@@ -4,12 +4,33 @@
     <section class="ftco-section">
         <div class="container">
             <div class="row">
+
                 <div class="col-md-12 text-center">
                     <h2 class="heading-section mb-5 pb-md-4">
                         <span class="flaticon-bed"></span>Choose a Venue/Room you would like to book today
                     </h2>
-                    </h2>
                 </div>
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if (Session::has('message'))
+                    <div class="alert alert-success">
+                        <ul>
+                            <li>{{ Session::get('message') }}</li>
+                        </ul>
+                    </div>
+                @endif
                 <div class="col-md-12">
                     <div class="featured-carousel owl-carousel">
                         @foreach ($rooms as $item)

@@ -13,6 +13,27 @@
                     <a href="{{ route('bookVenue', $room->id) }}" class="btn btn-primary my-2">Book This Venue</a>
                 </p>
             </div>
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if (Session::has('message'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{{ Session::get('message') }}</li>
+                    </ul>
+                </div>
+            @endif
         </section>
 
         <div class="album py-5 bg-light">
