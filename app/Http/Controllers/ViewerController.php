@@ -43,6 +43,23 @@ class ViewerController extends Controller
             'paymentMethod' => 'required|in:yes,no',
         ]);
 
+        $existingApplication = Application::where('roomID', $request->id)
+            ->where('start_date', '<=', $request->end_date)
+            ->where('email', $request->email)
+            ->where('end_date', '>=', $request->start_date)
+            ->where(function ($query) use ($request) {
+                $query->where('email', $request->email)
+                    ->where('start_date', $request->start_date)
+                    ->orWhere('end_date', $request->end_date);
+            })
+            ->first();
+
+        if ($existingApplication) {
+            return redirect()->back()->with('error', 'Dear ' . $request->name . ', looks like you have already applied for this venue.');
+        }
+
+
+
         $application = new Application();
         $application->roomID = $request->id;
         $application->name = $request->name;

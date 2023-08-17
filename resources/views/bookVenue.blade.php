@@ -29,10 +29,17 @@
                 </ul>
             </div>
         @endif
+        @if (Session::has('error'))
+            <div class="alert alert-danger">
+                <ul>
+                    <li>{{ Session::get('error') }}</li>
+                </ul>
+            </div>
+        @endif
         <div class="row">
 
             <div class="col order-md-1">
-                <form class="needs-validation" action="{{ route('bookVenuePost') }}"  enctype="multipart/form-data"
+                <form class="needs-validation" action="{{ route('bookVenuePost') }}" enctype="multipart/form-data"
                     method="POST">
                     @csrf
                     <h4 class="mb-3">Personal Information</h4>
@@ -108,8 +115,7 @@
                                     class='text-danger'>*</sup></label>
                             <input type="number" max="{{ $room->max_capacity }}" min="{{ $room->min_capacity }}"
                                 class="form-control @error('participants') is-invalid @enderror" name="participants"
-                                id="participants" placeholder="Total participants" value="{{ old('participants') }}"
-                                >
+                                id="participants" placeholder="Total participants" value="{{ old('participants') }}">
                             <small class="form-text text-danger">
                                 Max: {{ $room->max_capacity }}, Min: {{ $room->min_capacity }}
                             </small>
@@ -146,7 +152,7 @@
                     <div class="mb-3">
                         <label for="attachment">Attachment <span class="text-muted">(Optional)</span></label>
                         <input type="file" class="form-control @error('attachment') is-invalid @enderror"
-                            id="attachment" name="attachment" >
+                            id="attachment" name="attachment">
                         @error('attachment')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
