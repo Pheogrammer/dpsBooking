@@ -14,7 +14,7 @@
                                 <a href="{{ route('AcceptedBookings') }}" class="btn btn-primary">Accepted Applications</a>
                             </div>
                             <div class="col-4">
-                                <a href="{{ route('RejectedBookings') }}" class="btn btn-warning">Rejected Applications</a>
+                                <a href="{{ route('bookings') }}" class="btn btn-success">Waiting Applications</a>
                             </div>
                         </div>
                     </div>

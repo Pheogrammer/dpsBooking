@@ -96,11 +96,18 @@
                     </div>
                     <div class="card-footer">
                         <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
-                            <div class="col  ">
-                                <a href="{{ route('AcceptApplication', $data->id) }}" class="btn btn-primary">Accept</a>
-                                <a href="{{ route('RejectApplication', $data->id) }}" class="btn btn-danger">Reject</a>
+                            @if ($data->status == 1)
+                                <H3 class="bg-success">ACCEPTED</H3>
+                            @elseif($data->status == 2)
+                                <H3 class="bg-danger">REJECTED</H3>
+                            @else
+                                <div class="col  ">
+                                    <a href="{{ route('AcceptApplication', $data->id) }}"
+                                        class="btn btn-primary">Accept</a>
+                                    <a href="{{ route('RejectApplication', $data->id) }}" class="btn btn-danger">Reject</a>
 
-                            </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

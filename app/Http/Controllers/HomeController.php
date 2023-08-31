@@ -134,8 +134,22 @@ class HomeController extends Controller
 
     public function bookings()
     {
-        $data = Application::where('status',0)->orderby('status', 'asc')->get();
+        $data = Application::where('status', 0)->orderby('status', 'asc')->get();
         return view('bookings', ['data' => $data]);
+
+    }
+
+    public function AcceptedBookings()
+    {
+        $data = Application::where('status', 1)->orderby('status', 'asc')->get();
+        return view('AcceptedBookings', ['data' => $data]);
+
+    }
+
+    public function RejectedBookings()
+    {
+        $data = Application::where('status', 2)->orderby('status', 'asc')->get();
+        return view('RejectedBookings', ['data' => $data]);
 
     }
 

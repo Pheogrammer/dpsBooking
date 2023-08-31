@@ -35,6 +35,10 @@ Route::post('roomsEditPost', [HomeController::class, 'roomsEditPost'])->name('ro
 Route::get('roomsDelete/{id}', [HomeController::class, 'roomsDelete'])->name('roomsDelete');
 
 Route::get('bookings', [HomeController::class, 'bookings'])->name('bookings');
+
+Route::get('AcceptedBookings',[HomeController::class,'AcceptedBookings'])->name('AcceptedBookings');
+Route::get('RejectedBookings',[HomeController::class,'RejectedBookings'])->name('RejectedBookings');
+
 Route::get('viewApplication/{id}', [HomeController::class, 'viewApplication'])->name('viewApplication');
 
 Route::get('AcceptApplication/{id}', [HomeController::class, 'AcceptApplication'])->name('AcceptApplication');
