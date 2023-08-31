@@ -10,7 +10,7 @@
                             <div class="col">
                                 {{ __('Room Application') }}
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -58,7 +58,7 @@
                                         <td>{{ $item->room->room_name }}</td>
                                         <td> From: {{ (new DateTime($item->start_date))->format('d/m/Y') }} - To: {{ (new DateTime($item->end_date))->format('d/m/Y') }}</td>
                                         <td>
-                                            <a href="{{route('viewRoom',$item->id)}}" class="btn btn-primary">View</a>
+                                            <a href="{{route('viewApplication',$item->id)}}" class="btn btn-primary">View</a>
                                         </td>
                                     </tr>
                                     @php

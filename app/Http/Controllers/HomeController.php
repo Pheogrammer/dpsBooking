@@ -139,6 +139,12 @@ class HomeController extends Controller
 
     }
 
+    public function viewApplication($id)
+    {
+        $data = Application::find($id);
+        return view('viewApplication', ['data' => $data]);
+    }
+
     //
 
     private function uploadAndRenameImage($imageFile, $roomName)
