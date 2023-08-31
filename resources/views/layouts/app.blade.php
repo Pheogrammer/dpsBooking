@@ -40,6 +40,10 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('rooms') }}">{{ __('Rooms') }}</a>
                             </li>
+                       
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('bookings') }}">{{ __('Bookings') }}</a>
+                            </li>
                         </ul>
                     @endguest
 

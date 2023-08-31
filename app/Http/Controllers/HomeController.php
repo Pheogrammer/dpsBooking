@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Room;
+use App\Models\Application;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\File;
@@ -128,6 +129,13 @@ class HomeController extends Controller
         } catch (ModelNotFoundException $e) {
             return redirect()->route('rooms')->with(['error' => 'Room not found']);
         }
+
+    }
+
+    public function bookings()
+    {
+        $data = Application::orderby('status', 'asc')->get();
+        return view('bookings', ['data' => $data]);
 
     }
 

@@ -32,3 +32,5 @@ Route::get('viewRoom/{id}', [HomeController::class, 'viewRoom'])->name('viewRoom
 
 Route::post('roomsEditPost', [HomeController::class, 'roomsEditPost'])->name('roomsEditPost');
 Route::get('roomsDelete/{id}', [HomeController::class, 'roomsDelete'])->name('roomsDelete');
+
+Route::get('bookings',[HomeController::class, 'bookings'])->name('bookings');
