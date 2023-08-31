@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ViewerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,10 +16,10 @@ use App\Http\Controllers\ViewerController;
 |
 */
 
-Route::get('/',[ViewerController::class, 'index'])->name('index');
-Route::get('viewDetails/{id}',[ViewerController::class, 'viewDetails'])->name('viewDetails');
-Route::get('bookVenue/{id}',[ViewerController::class, 'bookVenue'])->name('bookVenue');
-Route::post('bookVenuePost',[ViewerController::class, 'bookVenuePost'])->name('bookVenuePost');
+Route::get('/', [ViewerController::class, 'index'])->name('index');
+Route::get('viewDetails/{id}', [ViewerController::class, 'viewDetails'])->name('viewDetails');
+Route::get('bookVenue/{id}', [ViewerController::class, 'bookVenue'])->name('bookVenue');
+Route::post('bookVenuePost', [ViewerController::class, 'bookVenuePost'])->name('bookVenuePost');
 
 Auth::routes();
 
@@ -33,5 +34,8 @@ Route::get('viewRoom/{id}', [HomeController::class, 'viewRoom'])->name('viewRoom
 Route::post('roomsEditPost', [HomeController::class, 'roomsEditPost'])->name('roomsEditPost');
 Route::get('roomsDelete/{id}', [HomeController::class, 'roomsDelete'])->name('roomsDelete');
 
-Route::get('bookings',[HomeController::class, 'bookings'])->name('bookings');
-Route::get('viewApplication/{id}',[HomeController::class, 'viewApplication'])->name('viewApplication');
+Route::get('bookings', [HomeController::class, 'bookings'])->name('bookings');
+Route::get('viewApplication/{id}', [HomeController::class, 'viewApplication'])->name('viewApplication');
+
+Route::get('AcceptApplication/{id}', [HomeController::class, 'AcceptApplication'])->name('AcceptApplication');
+Route::get('RejectApplication/{id}', [HomeController::class, 'RejectApplication'])->name('RejectApplication');

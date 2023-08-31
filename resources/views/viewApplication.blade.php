@@ -83,12 +83,25 @@
                                 <b> From:</b> {{ (new DateTime($data->start_date))->format('d/m/Y') }} - <b>To:</b>
                                 {{ (new DateTime($data->end_date))->format('d/m/Y') }}
 
+                                <br>
+                                <b>Applied on</b>
+                                {{ (new DateTime($data->created_at))->format('d/m/Y') }}
+
                             </div>
                         </div>
 
 
 
 
+                    </div>
+                    <div class="card-footer">
+                        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                            <div class="col  ">
+                                <a href="{{ route('AcceptApplication', $data->id) }}" class="btn btn-primary">Accept</a>
+                                <a href="{{ route('RejectApplication', $data->id) }}" class="btn btn-danger">Reject</a>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <br>
@@ -105,21 +118,32 @@
                                     <th>Applicant Name</th>
                                     <th>From</th>
                                     <th>Total Participants</th>
+                                    <th>Application Date</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                               @foreach ($other as $other)
-                               <tr>
-                                <td>{{$other->name}}</td>
-                                <td>{{$other->from}}</td>
-                                <td>{{$other->number_of_participants}}</td>
-                            </tr>
-                               @endforeach
+                                @foreach ($other as $other)
+                                    <tr @if ($other->status == 1) class='bg-success text-light' @endif>
+                                        <td>{{ $other->name }}</td>
+                                        <td>{{ $other->from }}</td>
+                                        <td>{{ $other->number_of_participants }}</td>
+                                        <td> {{ (new DateTime($other->created_at))->format('d/m/Y') }}</td>
+                                        <td>
+                                            @if ($other->status == 0)
+                                                New Application
+                                            @else
+                                                Accepted Application
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

@@ -134,7 +134,7 @@ class HomeController extends Controller
 
     public function bookings()
     {
-        $data = Application::orderby('status', 'asc')->get();
+        $data = Application::where('status',0)->orderby('status', 'asc')->get();
         return view('bookings', ['data' => $data]);
 
     }
@@ -142,8 +142,26 @@ class HomeController extends Controller
     public function viewApplication($id)
     {
         $data = Application::find($id);
-        $other = Application::where('roomID', $data->roomID)->where('start_date', $data->start_date)->where('id','<>',$data->id)->get();
+        $other = Application::where('roomID', $data->roomID)->where('start_date', $data->start_date)->where('status', '<>', 2)->where('id', '<>', $data->id)->get();
         return view('viewApplication', ['data' => $data, 'other' => $other]);
+    }
+
+    public function AcceptApplication($id)
+    {
+        $data = Application::where('id', $id)->first();
+        $data->status = 1;
+        $data->save();
+
+        return redirect()->route('bookings')->with(['message' => 'Booking Accepted Successfully']);
+    }
+
+    public function RejectApplication($id)
+    {
+        $data = Application::where('id', $id)->first();
+        $data->status = 2;
+        $data->save();
+
+        return redirect()->route('bookings')->with(['message' => 'Booking Rejected Successfully']);
     }
 
     //
