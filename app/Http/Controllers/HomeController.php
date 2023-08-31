@@ -142,7 +142,8 @@ class HomeController extends Controller
     public function viewApplication($id)
     {
         $data = Application::find($id);
-        return view('viewApplication', ['data' => $data]);
+        $other = Application::where('roomID', $data->roomID)->where('start_date', $data->start_date)->where('id','<>',$data->id)->get();
+        return view('viewApplication', ['data' => $data, 'other' => $other]);
     }
 
     //

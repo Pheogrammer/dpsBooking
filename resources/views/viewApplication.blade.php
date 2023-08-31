@@ -80,7 +80,7 @@
 
                         <div class="row">
                             <div class="col  ">
-                               <b> From:</b> {{ (new DateTime($data->start_date))->format('d/m/Y') }} - <b>To:</b>
+                                <b> From:</b> {{ (new DateTime($data->start_date))->format('d/m/Y') }} - <b>To:</b>
                                 {{ (new DateTime($data->end_date))->format('d/m/Y') }}
 
                             </div>
@@ -89,6 +89,35 @@
 
 
 
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="card">
+                    <div class="card-header">
+                        Other Applications for this Venue which shares date
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+
+                                    <th>Applicant Name</th>
+                                    <th>From</th>
+                                    <th>Total Participants</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                               @foreach ($other as $other)
+                               <tr>
+                                <td>{{$other->name}}</td>
+                                <td>{{$other->from}}</td>
+                                <td>{{$other->number_of_participants}}</td>
+                            </tr>
+                               @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
