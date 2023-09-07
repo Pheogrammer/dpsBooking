@@ -62,6 +62,23 @@
                                 </div>
                             </div>
                             <br>
+                            <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                                <div class="col  ">
+                                    <div class="form-group">
+                                        <label for="">Price for UDSM member</label>
+                                        <input required type="number" name="price" min="1" id=""
+                                            class="form-control" placeholder="" aria-describedby="helpId">
+                                    </div>
+                                </div>
+                                <div class="col  ">
+                                    <div class="form-group">
+                                        <label for="">Price for non UDSM member</label>
+                                        <input required type="number" name="outsideprice" id="" min="1"
+                                            class="form-control" placeholder="" aria-describedby="helpId">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
                             <div class="image-upload form-group">
                                 <label for="image1">Image 1</label>
                                 <input type="file" class="form-control" name="image1" id="image1" accept="image/*"
