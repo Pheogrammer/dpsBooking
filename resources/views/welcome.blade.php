@@ -9,8 +9,7 @@
                     <h2 class="heading-section mb-5 pb-md-4">
                         <span class="flaticon-bed"></span>Choose a Venue/Room you would like to book today
                     </h2>
-                </div>
-                @if (session('status'))
+                    @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
                     </div>
@@ -31,6 +30,8 @@
                         </ul>
                     </div>
                 @endif
+                </div>
+
                 <div class="col-md-12">
                     <div class="featured-carousel owl-carousel">
                         @foreach ($rooms as $item)

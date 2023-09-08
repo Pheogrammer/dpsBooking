@@ -20,7 +20,7 @@ class ViewerController extends Controller
         $room = Room::find($id);
         $bookedDates = Application::where('roomID', $id)
             ->where('status', 1)
-           
+
             ->get();
 
         $colors = ['red', 'blue', 'green', 'orange', 'purple'];
@@ -54,9 +54,9 @@ class ViewerController extends Controller
         ]);
 
         $existingApplication = Application::where('roomID', $request->id)
-            ->where('start_date', '<=', $request->end_date)
+            ->where('start_date', '=', $request->start_date)
             ->where('email', $request->email)
-            ->where('end_date', '>=', $request->start_date)
+            ->where('end_date', '=', $request->end_date)
             ->where(function ($query) use ($request) {
                 $query->where('email', $request->email)
                     ->where('start_date', $request->start_date)
@@ -80,6 +80,7 @@ class ViewerController extends Controller
         $application->entity = $request->entity;
         $application->number_of_participants = $request->participants;
         $application->start_date = $request->start_date;
+        $application->udsm = $request->udsmstaff;
 
         if ($request->end_date != null) {
             $application->end_date = $request->end_date;
