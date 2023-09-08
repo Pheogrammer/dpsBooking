@@ -1,4 +1,4 @@
-@extends('layouts.view')
+@extends('layouts.calenda')
 
 @section('content')
     <main role="main">
