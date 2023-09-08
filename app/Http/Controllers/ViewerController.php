@@ -20,9 +20,14 @@ class ViewerController extends Controller
         $room = Room::find($id);
         $bookedDates = Application::where('roomID', $id)
             ->where('status', 1)
-            ->whereBetween('start_date', [now(), now()->addMonths(3)])
-            ->orWhereBetween('end_date', [now(), now()->addMonths(3)])
+           
             ->get();
+
+        $colors = ['red', 'blue', 'green', 'orange', 'purple'];
+        foreach ($bookedDates as $key => $booking) {
+            $booking->color = $colors[$key % count($colors)];
+        }
+
         return view('viewDetails', compact('room', 'bookedDates'));
     }
     public function bookVenue($id)
@@ -81,7 +86,7 @@ class ViewerController extends Controller
         } else {
             $application->end_date = $request->start_date;
         }
-        
+
         $application->conference_services = $request->paymentMethod;
 
         // Handle attachment upload and rename

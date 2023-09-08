@@ -98,8 +98,9 @@
         <div id="calendar"></div>
 
         <script>
-            $(document).ready(function() {
-                $('#calendar').fullCalendar({
+            jQuery(document).ready(function() {
+                // Your FullCalendar initialization code here
+                jQuery('#calendar').fullCalendar({
                     header: {
                         left: 'prev,next today',
                         center: 'title',
@@ -111,13 +112,27 @@
                                 title: 'Booked',
                                 start: '{{ $booking->start_date }}',
                                 end: '{{ $booking->end_date }}',
-                                color: 'red',
+                                color: '{{ $booking->color }}', // Set the color dynamically based on the booking
                             },
                         @endforeach
                     ],
+                    eventRender: function(event, element) {
+                        // Customize the event rendering here
+                        element.css({
+                            'background-color': event
+                            .color, // Set the background color for the entire box
+                            'color': 'white',
+                            'text-align': 'center',
+                            'text-transform': 'uppercase'
+                        });
+                        element.find('.fc-title').remove(); // Remove the default event title
+                        element.html('<div style="line-height: 1.5;">Booked</div>');
+                    }
                 });
             });
         </script>
+
+
 
     </main>
 @endsection
