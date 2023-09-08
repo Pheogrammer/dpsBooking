@@ -18,7 +18,12 @@ class ViewerController extends Controller
     public function viewDetails($id)
     {
         $room = Room::find($id);
-        return view('viewDetails', compact('room'));
+        $bookedDates = Application::where('roomID', $id)
+            ->where('status', 1)
+            ->whereBetween('start_date', [now(), now()->addMonths(3)])
+            ->orWhereBetween('end_date', [now(), now()->addMonths(3)])
+            ->get();
+        return view('viewDetails', compact('room', 'bookedDates'));
     }
     public function bookVenue($id)
     {
@@ -70,7 +75,13 @@ class ViewerController extends Controller
         $application->entity = $request->entity;
         $application->number_of_participants = $request->participants;
         $application->start_date = $request->start_date;
-        $application->end_date = $request->end_date;
+
+        if ($request->end_date != null) {
+            $application->end_date = $request->end_date;
+        } else {
+            $application->end_date = $request->start_date;
+        }
+        
         $application->conference_services = $request->paymentMethod;
 
         // Handle attachment upload and rename

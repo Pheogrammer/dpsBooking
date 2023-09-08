@@ -9,32 +9,32 @@
                 <p class="lead text-muted">This Venue/Room is located at {{ $room->location }} </p>
                 <p>Capacity: The Venue/Room can accomodate a maximum of <b>{{ $room->max_capacity }}</b> people and minimum
                     of <b>{{ $room->min_capacity }} people</b></p>
-                    <p>
+                <p>
 
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <td colspan="2">
-                                        <b>Booking Pricing:</b>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>For UDSM Staff/Member/Directorates/Company</td>
-                                    <td>For non UDSM Staff/Member/Directorate/Company</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        {{number_format($room->price)}}
-                                    </td>
-                                    <td>
-                                        {{number_format($room->outsidePrice)}}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td colspan="2">
+                                <b>Booking Pricing:</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>For UDSM Staff/Member/Directorates/Company</td>
+                            <td>For non UDSM Staff/Member/Directorate/Company</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                {{ number_format($room->price) }}
+                            </td>
+                            <td>
+                                {{ number_format($room->outsidePrice) }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </p>
                 <p>
                     <a href="{{ route('bookVenue', $room->id) }}" class="btn btn-primary my-2">Book This Venue</a>
                 </p>
@@ -95,6 +95,29 @@
 
             </div>
         </div>
+        <div id="calendar"></div>
+
+        <script>
+            $(document).ready(function() {
+                $('#calendar').fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay'
+                    },
+                    events: [
+                        @foreach ($bookedDates as $booking)
+                            {
+                                title: 'Booked',
+                                start: '{{ $booking->start_date }}',
+                                end: '{{ $booking->end_date }}',
+                                color: 'red',
+                            },
+                        @endforeach
+                    ],
+                });
+            });
+        </script>
 
     </main>
 @endsection
