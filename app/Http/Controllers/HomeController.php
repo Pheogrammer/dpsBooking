@@ -47,6 +47,8 @@ class HomeController extends Controller
         $room->location = $request->location;
         $room->max_capacity = $request->max_capacity;
         $room->min_capacity = $request->min_capacity;
+        $room->price = $request->price;
+        $room->outsidePrice = $request->outsidePrice;
 
         // Handle image uploads and renaming
         if ($request->hasFile('image1')) {
@@ -85,6 +87,9 @@ class HomeController extends Controller
         $room->max_capacity = $request->max_capacity;
         $room->min_capacity = $request->min_capacity;
 
+        $room->price = $request->price;
+        $room->outsidePrice = $request->outsidePrice;
+        
         // Handle image uploads and renaming
         if ($request->hasFile('image1')) {
             $image1 = $request->file('image1');

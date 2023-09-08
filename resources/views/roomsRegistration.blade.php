@@ -73,7 +73,7 @@
                                 <div class="col  ">
                                     <div class="form-group">
                                         <label for="">Price for non UDSM member</label>
-                                        <input required type="number" name="outsideprice" id="" min="1"
+                                        <input required type="number" name="outsidePrice" id="" min="1"
                                             class="form-control" placeholder="" aria-describedby="helpId">
                                     </div>
                                 </div>
